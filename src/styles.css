@@ -1,0 +1,124 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * BizFlow ERP design system — "Kinetic Glass".
+ * Dark ink base, volt/ice/berry accents, glass panels.
+ * All colors are oklch tokens; never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: var(--font-display-family);
+  --font-sans: var(--font-sans-family);
+  --font-mono: var(--font-mono-family);
+
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-volt: var(--volt);
+  --color-berry: var(--berry);
+  --color-ice: var(--ice);
+  --color-line: var(--line);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --font-display-family: "Space Grotesk", sans-serif;
+  --font-sans-family: "Inter", sans-serif;
+  --font-mono-family: "JetBrains Mono", monospace;
+
+  --ink: oklch(0.145 0.02 268);
+  --ink2: oklch(0.205 0.028 267);
+  --volt: oklch(0.875 0.155 175);
+  --berry: oklch(0.655 0.225 10);
+  --ice: oklch(0.735 0.125 262);
+  --line: oklch(0.285 0.028 262);
+
+  --background: var(--ink);
+  --foreground: oklch(0.96 0.005 250);
+  --card: var(--ink2);
+  --card-foreground: oklch(0.96 0.005 250);
+  --popover: var(--ink2);
+  --popover-foreground: oklch(0.96 0.005 250);
+  --primary: var(--volt);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.26 0.028 264);
+  --secondary-foreground: oklch(0.96 0.005 250);
+  --muted: oklch(0.26 0.028 264);
+  --muted-foreground: oklch(0.66 0.02 258);
+  --accent: var(--ice);
+  --accent-foreground: var(--ink);
+  --destructive: var(--berry);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--volt);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans-family);
+  }
+}
+
+@utility sheen {
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    color-mix(in oklab, white 8%, transparent) 45%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  animation: bizflow-sheen 5.5s ease-in-out infinite;
+}
+
+@utility glass-panel {
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink2) 50%, transparent);
+  backdrop-filter: blur(24px);
+}
+
+@keyframes bizflow-sheen {
+  0% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -130% 0;
+  }
+}
